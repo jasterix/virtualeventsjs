@@ -1,27 +1,16 @@
-// Return the character most commonly used in the string.
-// --- Examples
-// maxChar("I loveeeeeee noodles") === "e"
-// maxChar("1337") === "3"
+const apiUrl = "https://virtual-events.herokuapp.com/events";
 
-function maxChar(str) {
-  // create tally for each letter
-  // compare tally against length of String
-  let tally = {};
-  let maxChar = "";
-  let maxCount = 0;
+const eventsContainer = document.querySelector(".event-listing-container");
 
-  for (let i = 0; i < str.length; i++) {
-    let char = str[i];
-    tally[char] = tally[char] + 1 || 1;
-    // console.log(tally);
+console.log("hello");
 
-    if (tally[char] > maxCount) {
-      maxChar = char;
-      maxCount = tally[char];
-    }
-  }
-  return maxChar;
-}
+fetch(apiUrl)
+  .then((response) => response.json())
+  .then((data) => {
+    data.forEach((event) => {
+      eventsContainer.innerHTML += `<li>${event.title}</>`;
+    });
+  });
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
 // \__   __/(  ____ \(  ____ \\__   __/  (  ____ \(  ___  )(  ____ \(  ____ \(  ____ \
 //    ) (   | (    \/| (    \/   ) (     | (    \/| (   ) || (    \/| (    \/| (    \/
@@ -57,4 +46,4 @@ describe("Max Character", () => {
   });
 });
 
-mocha.run();
+// mocha.run();
