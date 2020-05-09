@@ -1,0 +1,19 @@
+{
+  "name": "virtualeventsjs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jasterix/virtualeventsjs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jasterix/virtualeventsjs/issues"
+  },
+  "homepage": "https://github.com/jasterix/virtualeventsjs#readme"
+}
