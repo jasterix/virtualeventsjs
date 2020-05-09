@@ -8,9 +8,14 @@ fetch(apiUrl)
   .then((response) => response.json())
   .then((data) => {
     data.forEach((event) => {
+      addDate(event);
       eventsContainer.innerHTML += `<li>${event.title}</>`;
     });
   });
+
+function addDate(event) {
+  eventsContainer.innerHTML += `<li>${event.startDate}</>`;
+}
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
 // \__   __/(  ____ \(  ____ \\__   __/  (  ____ \(  ___  )(  ____ \(  ____ \(  ____ \
 //    ) (   | (    \/| (    \/   ) (     | (    \/| (   ) || (    \/| (    \/| (    \/
