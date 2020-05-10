@@ -1,5 +1,12 @@
 /* variables */
 
+--root {
+  --primaryBackground: rgba(255, 255, 255, 1);
+  --secondaryBackground: rgba(22, 69, 93, 1);
+  --primaryFont: rgba(0, 0, 0, 0.87);
+  --secondaryFont: rgba(0, 0, 0, 0.54);
+}
+
 /* reset */
 
 body,
@@ -17,6 +24,25 @@ li {
 }
 
 /* base styles */
+body {
+  background: var(--primaryBackground);
+  overflow-y: hidden;
+}
+
+.button {
+  background: var(--secondaryBackground);
+  border: 2px solid var(--secondaryBackground);
+  color: var(--primaryFont);
+  padding: 6px 12px;
+  border-radius: 12px;
+  text-transform: uppercase;
+  display: inline-block;
+}
+
+input,
+textarea {
+  background: var(--primaryBackground);
+}
 
 /* fonts */
 
