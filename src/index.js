@@ -1,6 +1,7 @@
 const apiUrl = "https://virtual-events.herokuapp.com/events";
 
 const eventsContainer = document.querySelector(".event-listing-container");
+const eventListing = document.querySelector(".row.event-listing");
 
 console.log("hello");
 
@@ -14,6 +15,12 @@ let eventManager = (events) => {
     month: "long",
     day: "numeric",
   };
+  const timeOptions = {
+    hour: "numeric",
+    minute: "numeric",
+    dayPeriod: "short",
+  };
+
   let dateHeaders = () => {
     let uniqueDates = [...new Set(events.map((x) => x.startDate))];
 
@@ -40,20 +47,6 @@ let eventManager = (events) => {
     let eventsList = uniqueEvents();
     let datesList = dates().sort((a, b) => new Date(b) - new Date(a));
 
-    // datesList = datesList.filter((date) => {
-    //   let year = 2020;
-    //   let month = new Date(date).getMonth() - 1;
-    //   let day = new Date(date).getDay();
-
-    //   date = new Date(year, month, day);
-    //   console.log(date);
-    //   // console.log(date, n);
-
-    //   // console.log(date.getTime() > n.getTime());
-
-    //   return date.getTime() * 10 > n.getTime();
-    // });
-
     for (let i = 0; i < datesList.length; i++) {
       eventsContainer.innerHTML += `<div class="dateHeader"><ul>${datesList[i]}</ul></div>`;
       eventsList.filter((x) => {
@@ -65,9 +58,18 @@ let eventManager = (events) => {
         let elementDate = new Intl.DateTimeFormat("en-US", dateOptions).format(
           Date.parse(element.startDate)
         );
+        let elementTime = new Intl.DateTimeFormat("en-US", timeOptions).format(
+          Date.parse(element.startDate)
+        );
 
         if (elementDate === datesList[i]) {
-          eventsContainer.innerHTML += `<div class="eventHeader"><a href="#"><li>${element.title}</li></a></div>`;
+          eventsContainer.innerHTML += `<a href="#">
+          <div>
+          <li>${elementTime}</li>
+          <li>${element.eventType}</li>
+          <li>${element.title}</li>
+          </div>
+          </a>`;
         }
       });
     }
