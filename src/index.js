@@ -64,11 +64,15 @@ let eventManager = (events) => {
 
         if (elementDate === datesList[i]) {
           eventsContainer.innerHTML += `<a href="#">
-          <div>
-          <li>${elementTime}</li>
-          <li>${element.eventType}</li>
-          <li>${element.title}</li>
+          <li class="row eventHeader">
+          <div class="row-item time">${elementTime}</div>
           </div>
+          <div class="row-item">
+          <span class="type chunk">${element.eventType}</span>
+          <span class="title chunk">${element.title}</span>
+          
+          <div>
+          </li>
           </a>`;
         }
       });
