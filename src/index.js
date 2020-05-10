@@ -8,71 +8,7 @@ fetch(apiUrl)
   .then((response) => response.json())
   .then((events) => eventManager(events));
 
-let eventManager = (events) => {
-  console.log(events[0]);
-
-  const dateOptions = {
-    weekday: "long",
-    month: "long",
-    day: "numeric",
-  };
-  let uniqueIDs = [];
-  // const allDates = [
-  //   events.map((event) => {
-  //     return {
-  //       id: event._id,
-  //       startDate: event.startDate,
-  //     };
-  //   }),
-  // ];
-  const uniqueDates = [...new Set(events.map((x) => x.startDate))];
-  console.log(uniqueDates);
-
-  return uniqueDates.forEach((date) => {
-    let formatted = new Intl.DateTimeFormat("en-US", dateOptions).format(
-      Date.parse(date)
-    );
-    return (eventsContainer.innerHTML += `<div><li>${formatted}</li>
-    <li>${formatted}</li></div>`);
-  });
-  // function dateGroup(uniqueDates) {
-  //   const dateOptions = {
-  //     weekday: "long",
-  //     month: "long",
-  //     day: "numeric",
-  //   };
-  //   const dates = (event) => {
-  //     let formattedDate = Intl.DateTimeFormat("en-US", dateOptions).format(
-  //       Date.parse(event.startDate)
-  //     );
-  //     return formattedDate;
-  //   };
-  // }
-  const addDate = (event) => {
-    function eventTime() {
-      const timeOptions = {
-        hour: "numeric",
-        minute: "numeric",
-      };
-      const eventTime = new Intl.DateTimeFormat("en-US", timeOptions).format(
-        Date.parse(event.startDate)
-      );
-      return eventTime;
-    }
-
-    return dateGroups.forEach((date) => {
-      let eventItems = events.filter((event) => {
-        return date === event.startDate;
-      });
-      return eventItems.map((eventItem) => {
-        console.log(eventItem);
-
-        return (eventsContainer.innerHTML += `<div><li>${eventItem}</li>
-      <li>${eventItem}</li></div>`);
-      });
-    });
-  };
-};
+let eventManager = (events) => {};
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
 // \__   __/(  ____ \(  ____ \\__   __/  (  ____ \(  ___  )(  ____ \(  ____ \(  ____ \
 //    ) (   | (    \/| (    \/   ) (     | (    \/| (   ) || (    \/| (    \/| (    \/
