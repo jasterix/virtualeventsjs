@@ -16,13 +16,6 @@ let eventManager = (events) => {
   };
   let dateHeaders = () => {
     let uniqueDates = [...new Set(events.map((x) => x.startDate))];
-    // uniqueDates = uniqueDates.map((x) => {
-    //   return new Date(
-    //     new Date(x).getFullYear(),
-    //     new Date(x).getMonth(),
-    //     new Date(x).getDay()
-    //   );
-    // });
 
     // return uniqueDates;
     return uniqueDates.map((date) => {
@@ -42,10 +35,24 @@ let eventManager = (events) => {
   // matchingEvents();
 
   let displayEvents = (dates, uniqueEvents) => {
-    let now = new Date(Date.now());
+    let now = Date.now(0);
+    let n = new Date();
     let eventsList = uniqueEvents();
     let datesList = dates().sort((a, b) => new Date(b) - new Date(a));
-    console.log(now);
+
+    // datesList = datesList.filter((date) => {
+    //   let year = 2020;
+    //   let month = new Date(date).getMonth() - 1;
+    //   let day = new Date(date).getDay();
+
+    //   date = new Date(year, month, day);
+    //   console.log(date);
+    //   // console.log(date, n);
+
+    //   // console.log(date.getTime() > n.getTime());
+
+    //   return date.getTime() * 10 > n.getTime();
+    // });
 
     for (let i = 0; i < datesList.length; i++) {
       eventsContainer.innerHTML += `<div class="dateHeader"><ul>${datesList[i]}</ul></div>`;
@@ -60,7 +67,7 @@ let eventManager = (events) => {
         );
 
         if (elementDate === datesList[i]) {
-          eventsContainer.innerHTML += `<div class="eventHeader"><li>${element.title}</li></div>`;
+          eventsContainer.innerHTML += `<div class="eventHeader"><a href="#"><li>${element.title}</li></a></div>`;
         }
       });
     }
