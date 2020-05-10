@@ -9,13 +9,36 @@ fetch(apiUrl)
   .then((data) => {
     data.forEach((event) => {
       addDate(event);
-      eventsContainer.innerHTML += `<li>${event.title}</>`;
     });
   });
 
-function addDate(event) {
-  eventsContainer.innerHTML += `<li>${event.startDate}</>`;
-}
+const addDate = (event) => {
+  function dateGroup() {
+    const dateOptions = {
+      weekday: "long",
+      month: "long",
+      day: "numeric",
+    };
+    const dateGroup = new Intl.DateTimeFormat("en-US", dateOptions).format(
+      Date.parse(event.startDate)
+    );
+    return dateGroup;
+  }
+
+  function eventTime() {
+    const timeOptions = {
+      hour: "numeric",
+      minute: "numeric",
+    };
+    const eventTime = new Intl.DateTimeFormat("en-US", timeOptions).format(
+      Date.parse(event.startDate)
+    );
+    return eventTime;
+  }
+  return (eventsContainer.innerHTML += `<div><li>${dateGroup()}</li>
+  <li>${eventTime()}</li></div>`);
+};
+
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
 // \__   __/(  ____ \(  ____ \\__   __/  (  ____ \(  ___  )(  ____ \(  ____ \(  ____ \
 //    ) (   | (    \/| (    \/   ) (     | (    \/| (   ) || (    \/| (    \/| (    \/
