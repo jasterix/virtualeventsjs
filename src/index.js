@@ -8,7 +8,56 @@ fetch(apiUrl)
   .then((response) => response.json())
   .then((events) => eventManager(events));
 
-let eventManager = (events) => {};
+let eventManager = (events) => {
+  const dateOptions = {
+    weekday: "long",
+    month: "long",
+    day: "numeric",
+  };
+  let dateHeaders = () => {
+    const uniqueDates = [...new Set(events.map((x) => x.startDate))];
+
+    // return uniqueDates;
+    return uniqueDates.map((date) => {
+      let formatted = new Intl.DateTimeFormat("en-US", dateOptions).format(
+        Date.parse(date)
+      );
+      return formatted;
+    });
+  };
+  // dateHeaders;
+
+  let matchingEvents = () => {
+    const uniqueEvents = [...new Set(events.map((x) => x.title))];
+    return uniqueEvents;
+  };
+
+  // matchingEvents();
+
+  let displayEvents = (dates, uniqueEvents) => {
+    let eventsList = uniqueEvents();
+    let datesList = dates();
+
+    for (let i = 0; i < datesList.length; i++) {
+      eventsContainer.innerHTML += `<div class="dateHeader"><ul>${datesList[i]}</ul></div>`;
+      eventsList.filter((x) => {
+        let element = events.find((el) => el.title === x);
+
+        let elementDate = new Intl.DateTimeFormat("en-US", dateOptions).format(
+          Date.parse(element.startDate)
+        );
+
+        if (elementDate === datesList[i]) {
+          eventsContainer.innerHTML += `<div class="eventHeader"><li>${element.title}</li></div>`;
+        }
+      });
+    }
+
+    console.log(datesList, eventsList);
+  };
+  displayEvents(dateHeaders, matchingEvents);
+};
+
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
 // \__   __/(  ____ \(  ____ \\__   __/  (  ____ \(  ___  )(  ____ \(  ____ \(  ____ \
 //    ) (   | (    \/| (    \/   ) (     | (    \/| (   ) || (    \/| (    \/| (    \/

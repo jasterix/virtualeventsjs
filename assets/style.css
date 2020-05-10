@@ -19,6 +19,13 @@ li {
   text-decoration-style: 0;
 }
 
+.dateHeader {
+  margin: 10px;
+}
+
+.eventHeader {
+  margin: 0 30px;
+}
 li {
   list-style-type: none;
 }
