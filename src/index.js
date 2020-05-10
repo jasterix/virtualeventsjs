@@ -15,7 +15,14 @@ let eventManager = (events) => {
     day: "numeric",
   };
   let dateHeaders = () => {
-    const uniqueDates = [...new Set(events.map((x) => x.startDate))];
+    let uniqueDates = [...new Set(events.map((x) => x.startDate))];
+    // uniqueDates = uniqueDates.map((x) => {
+    //   return new Date(
+    //     new Date(x).getFullYear(),
+    //     new Date(x).getMonth(),
+    //     new Date(x).getDay()
+    //   );
+    // });
 
     // return uniqueDates;
     return uniqueDates.map((date) => {
@@ -35,13 +42,18 @@ let eventManager = (events) => {
   // matchingEvents();
 
   let displayEvents = (dates, uniqueEvents) => {
+    let now = new Date(Date.now());
     let eventsList = uniqueEvents();
-    let datesList = dates();
+    let datesList = dates().sort((a, b) => new Date(b) - new Date(a));
+    console.log(now);
 
     for (let i = 0; i < datesList.length; i++) {
       eventsContainer.innerHTML += `<div class="dateHeader"><ul>${datesList[i]}</ul></div>`;
       eventsList.filter((x) => {
         let element = events.find((el) => el.title === x);
+
+        let elDate = new Date(element.startDate);
+        // console.log(elDate.getMonth());
 
         let elementDate = new Intl.DateTimeFormat("en-US", dateOptions).format(
           Date.parse(element.startDate)
@@ -53,7 +65,7 @@ let eventManager = (events) => {
       });
     }
 
-    console.log(datesList, eventsList);
+    // console.log(datesList, eventsList);
   };
   displayEvents(dateHeaders, matchingEvents);
 };
