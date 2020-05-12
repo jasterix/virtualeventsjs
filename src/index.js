@@ -1,13 +1,16 @@
 const apiUrl = "https://virtual-events.herokuapp.com/events";
 
-const eventsContainer = document.querySelector(".event-listing-container");
+const eventsContainer = document.querySelector(".search-results");
 const eventListing = document.querySelector(".row.event-listing");
 
 console.log("hello");
 
 fetch(apiUrl)
   .then((response) => response.json())
-  .then((events) => eventManager(events));
+  .then((events) => {
+    console.log(events);
+    eventManager(events);
+  });
 
 let eventManager = (events) => {
   const dateOptions = {
@@ -51,17 +54,17 @@ let eventManager = (events) => {
     let datesList = dates().sort((a, b) => new Date(b) - new Date(a));
 
     for (let i = 0; i < datesList.length; i++) {
-      eventsContainer.innerHTML += `<div class="dateHeader"><ul>${datesList[i]}</ul></div>`;
+      eventsContainer.innerHTML += `<div class="dateHeader date-indicator"><h2>${datesList[i]}</h2></div>`;
       eventsList.filter((x) => {
         let element = events.find((el) => el.title === x);
 
         let elDate = new Date(element.startDate);
 
         let elementDate = new Intl.DateTimeFormat("en-US", dateOptions).format(
-          Date.parse(element.startDate)
+          new Date(element.startDate)
         );
         let elementTime = new Intl.DateTimeFormat("en-US", timeOptions).format(
-          Date.parse(element.startDate)
+          new Date(element.startDate)
         );
         console.log("hi hi");
         // console.log("hello hey");
@@ -69,16 +72,17 @@ let eventManager = (events) => {
         if (elementDate === datesList[i]) {
           // console.log("hello hey");
           eventsContainer.innerHTML += `<a href="#">
-          <li class="row eventHeader">
-          <div class="row-item time">${elementTime}</div>
+          <li class="grid event-listing-container row">
+          <div class="time">${elementTime}</div>
           </div>
-          <div class="row-item">
+          
           <span class="type chunk">${element.eventType}</span>
           <span class="title chunk">${element.title}</span>
+          <span class="host chunk">${element.host}</span>
           
-          <div>
           </li>
-          </a>`;
+          </a>
+          </ul>`;
         }
       });
     }

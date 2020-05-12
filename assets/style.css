@@ -63,11 +63,40 @@ textarea {
 /* fonts */
 /* =================== */
 
-html {
-  font-size: 2rem;
+h1 {
+  font-size: 1.5rem;
+}
+h2 {
+  font-size: 1.4rem;
+}
+
+p {
+  font-size: 1.2rem;
 }
 
 /* mobile styles */
+
+.event-listing-container {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+}
+
+.time {
+  grid-column: 1/2;
+}
+
+.type {
+  grid-column: 2/8;
+  grid-row: 1;
+}
+.title {
+  grid-column: 2/8;
+  grid-row: 2;
+}
+.host {
+  grid-column: 2/8;
+  grid-row: 3;
+}
 
 /* small tablet styles */
 @media screen and (min-width: 620px) {
