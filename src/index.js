@@ -54,7 +54,7 @@ let eventManager = (events) => {
     let datesList = dates().sort((a, b) => new Date(b) - new Date(a));
 
     for (let i = 0; i < datesList.length; i++) {
-      eventsContainer.innerHTML += `<div class="dateHeader date-indicator"><h2>${datesList[i]}</h2></div>`;
+      eventsContainer.innerHTML += `<div class="dateHeader date-indicator"><h3>${datesList[i]}</h3></div>`;
       eventsList.filter((x) => {
         let element = events.find((el) => el.title === x);
 
@@ -75,10 +75,9 @@ let eventManager = (events) => {
           <li class="grid event-listing-container row">
           <div class="time">${elementTime}</div>
           </div>
-          
-          <span class="type chunk">${element.eventType}</span>
-          <span class="title chunk">${element.title}</span>
-          <span class="host chunk">${element.host}</span>
+          <span class="host chunk"><h4>${element.host}</h4></span>
+          <span class="title chunk"><h2>${element.title}</h2></span>
+          <span class="type chunk"><p>${element.eventType}</p></span>
           
           </li>
           </a>

@@ -12,11 +12,7 @@
 /* reset */
 /* =================== */
 
-body,
-p,
-a,
-ul,
-li {
+* {
   margin: 0;
   padding: 0;
   text-decoration-style: 0;
@@ -25,11 +21,11 @@ li {
 }
 
 .dateHeader {
-  margin: 10px;
+  /* margin: 10px; */
 }
 
 .eventHeader {
-  margin: 0 30px;
+  /* margin: 0 30px; */
 }
 li {
   list-style-type: none;
@@ -64,10 +60,19 @@ textarea {
 /* =================== */
 
 h1 {
-  font-size: 1.5rem;
+  font-size: 2rem;
 }
 h2 {
-  font-size: 1.4rem;
+  font-size: 1.6rem;
+}
+
+h3 {
+  font-size: 1.6rem;
+}
+
+h4 {
+  font-size: 0.9;
+  text-transform: uppercase;
 }
 
 p {
@@ -78,26 +83,28 @@ p {
 
 .event-listing-container {
   display: grid;
-  grid-template-columns: repeat(8, 1fr);
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
 }
 
 .time {
   grid-column: 1/2;
+  grid-row: 1;
 }
 
-.type {
+.host {
   grid-column: 2/8;
   grid-row: 1;
 }
+
 .title {
   grid-column: 2/8;
-  grid-row: 2;
+  grid-row: 2/3;
 }
-.host {
+.type {
   grid-column: 2/8;
-  grid-row: 3;
+  grid-row: 4;
 }
-
 /* small tablet styles */
 @media screen and (min-width: 620px) {
 }
