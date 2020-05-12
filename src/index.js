@@ -26,16 +26,23 @@ let eventManager = (events) => {
 
     return uniqueDates.map((date) => {
       let formatted = new Intl.DateTimeFormat("en-US", dateOptions).format(
-        Date.parse(date)
+        new Date(date)
       );
+      console.log(formatted);
+
       return formatted;
     });
   };
 
+  dateHeaders();
+
   let matchingEvents = () => {
     const uniqueEvents = [...new Set(events.map((x) => x.title))];
+
     return uniqueEvents;
   };
+
+  matchingEvents();
 
   let displayEvents = (dates, uniqueEvents) => {
     let now = Date.now(0);
@@ -56,8 +63,11 @@ let eventManager = (events) => {
         let elementTime = new Intl.DateTimeFormat("en-US", timeOptions).format(
           Date.parse(element.startDate)
         );
+        console.log("hi hi");
+        // console.log("hello hey");
 
         if (elementDate === datesList[i]) {
+          // console.log("hello hey");
           eventsContainer.innerHTML += `<a href="#">
           <li class="row eventHeader">
           <div class="row-item time">${elementTime}</div>
@@ -72,7 +82,10 @@ let eventManager = (events) => {
         }
       });
     }
+
+    console.log("hello hey");
   };
+
   displayEvents(dateHeaders, matchingEvents);
 };
 
@@ -103,7 +116,12 @@ mocha.setup("bdd");
 const { assert } = chai;
 
 describe("Max Character", () => {
-  it("maxChar() finds the most frequently used character", () => {});
+  it("maxChar() finds the most frequently used character", () => {
+    assert.equal(maxChar("a"), "a");
+    assert.equal(maxChar("test"), "t");
+    assert.equal(maxChar("I loveeeeee noodles"), "e");
+    assert.equal(maxChar("1337"), "3");
+  });
 });
 
 // mocha.run();

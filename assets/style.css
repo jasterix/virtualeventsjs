@@ -5,9 +5,12 @@
   --secondaryBackground: rgba(22, 69, 93, 1);
   --primaryFont: rgba(0, 0, 0, 0.87);
   --secondaryFont: rgba(0, 0, 0, 0.54);
+  font-size: 62.5%;
 }
 
+/* =================== */
 /* reset */
+/* =================== */
 
 body,
 p,
@@ -32,7 +35,10 @@ li {
   list-style-type: none;
 }
 
+/* =================== */
 /* base styles */
+/* =================== */
+
 body {
   background: var(--primaryBackground);
   overflow-y: hidden;
@@ -53,7 +59,13 @@ textarea {
   background: var(--primaryBackground);
 }
 
+/* =================== */
 /* fonts */
+/* =================== */
+
+html {
+  font-size: 2rem;
+}
 
 /* mobile styles */
 
