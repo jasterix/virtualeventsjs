@@ -11,9 +11,15 @@ fetch(apiUrl)
       (element, index, array) =>
         array.findIndex((t) => t.title === element.title) === index
     );
-
-    eventManager(distinct);
-    eventCounter(distinct);
+    const now = new Date(Date.now());
+    let upcoming = distinct.filter(
+      (element) => new Date(element.startDate) >= now
+    );
+    upcoming = upcoming.sort(
+      (a, b) => new Date(a.startDate) - new Date(b.startDate)
+    );
+    eventManager(upcoming);
+    eventCounter(upcoming);
   });
 
 let eventManager = (events) => {
@@ -29,7 +35,9 @@ let eventManager = (events) => {
   };
 
   let dateHeaders = () => {
-    let uniqueDates = [...new Set(events.map((x) => x.startDate))];
+    let uniqueDates = [...events.map((x) => x.startDate)];
+    uniqueDates = uniqueDates;
+    console.log(uniqueDates);
 
     return uniqueDates.map((event) => {
       let formatted = new Intl.DateTimeFormat("en-US", dateOptions).format(
@@ -104,7 +112,7 @@ let eventCounter = (events) => {
     return xDate === thisMonth;
   }).length;
 
-  return (eventCount.innerHTML += `<p>${numEvents} events coming up  •  ${thisMonthCount} events this month</p>`);
+  return (eventCount.innerHTML += `<p>${numEvents} events coming up  •  ${thisMonthCount} events happening this month</p>`);
 };
 
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
