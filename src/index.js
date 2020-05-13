@@ -7,19 +7,12 @@ const evento = document.querySelector(".event-count");
 fetch(apiUrl)
   .then((response) => response.json())
   .then((events) => {
-    removeDuplicates(events);
-    // eventManager(events);
-    // eventCounter(events);
+    // removeDuplicates(events);
+    eventManager(events);
+    eventCounter(events);
   });
 
-let removeDuplicates = (events) => {
-  let uniqueEvents = [...new Set(events.map((event) => event.title))];
-  eventManager(uniqueEvents);
-};
-
 let eventManager = (events) => {
-  console.log(events);
-
   const dateOptions = {
     weekday: "long",
     month: "long",
@@ -32,11 +25,14 @@ let eventManager = (events) => {
   };
 
   let dateHeaders = () => {
+    // console.log(events);
     let uniqueDates = [...new Set(events.map((x) => x.startDate))];
 
-    return uniqueDates.map((date) => {
+    return events.map((event) => {
+      // console.log(event);
+
       let formatted = new Intl.DateTimeFormat("en-US", dateOptions).format(
-        new Date(date)
+        new Date(event.startDate)
       );
 
       return formatted;
