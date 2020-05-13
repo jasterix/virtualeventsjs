@@ -7,10 +7,13 @@ const eventCount = document.querySelector(".event-count");
 fetch(apiUrl)
   .then((response) => response.json())
   .then((data) => {
-    
+    const distinct = data.filter(
+      (element, index, array) =>
+        array.findIndex((t) => t.title === element.title) === index
+    );
 
-    eventManager(data);
-    eventCounter(data);
+    eventManager(distinct);
+    eventCounter(distinct);
   });
 
 let eventManager = (events) => {
