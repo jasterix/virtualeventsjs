@@ -2,12 +2,11 @@ const apiUrl = "https://virtual-events.herokuapp.com/events";
 
 const eventsContainer = document.querySelector(".search-results");
 const eventListing = document.querySelector(".row.event-listing");
-const evento = document.querySelector(".event-count");
+const eventCount = document.querySelector(".event-count");
 
 fetch(apiUrl)
   .then((response) => response.json())
   .then((events) => {
-    // removeDuplicates(events);
     eventManager(events);
     eventCounter(events);
   });
@@ -25,21 +24,18 @@ let eventManager = (events) => {
   };
 
   let dateHeaders = () => {
-    // console.log(events);
     let uniqueDates = [...new Set(events.map((x) => x.startDate))];
 
-    return events.map((event) => {
-      // console.log(event);
-
+    return uniqueDates.map((event) => {
       let formatted = new Intl.DateTimeFormat("en-US", dateOptions).format(
-        new Date(event.startDate)
+        new Date(event)
       );
 
       return formatted;
     });
   };
 
-  dateHeaders();
+  // dateHeaders();
 
   let matchingEvents = () => {
     const uniqueEvents = [...new Set(events.map((x) => x.title))];
@@ -47,7 +43,7 @@ let eventManager = (events) => {
     return uniqueEvents;
   };
 
-  matchingEvents();
+  // matchingEvents();
 
   let displayEvents = (dates, uniqueEvents) => {
     let now = Date.now(0);
@@ -70,7 +66,6 @@ let eventManager = (events) => {
         );
 
         if (elementDate === datesList[i]) {
-          // console.log("hello hey");
           eventsContainer.innerHTML += `<a href="#">
           <li class="grid event-listing-container row">
           <div class="time">${elementTime}</div>
@@ -92,17 +87,19 @@ let eventManager = (events) => {
 };
 
 let eventCounter = (uniqueEvents) => {
-  let eventCount = uniqueEvents.length;
+  let numEvents = uniqueEvents.length;
 
-  let thisMonth = new Date(Date.now()).getMonth() + 1;
+  // reminder--Date month starts at 0 (January)
+  let thisMonth = new Date(Date.now()).getMonth();
 
   let thisMonthCount = uniqueEvents.filter((x) => {
     let xDate = new Date(x.startDate).getMonth();
+    console.log(xDate, "-", thisMonth, "--", x.title);
 
-    return xDate + 1 === thisMonth;
-  });
+    return xDate === thisMonth;
+  }).length;
 
-  return (eventCount.innerHTML += `<div>${eventCount} events coming up • ${thisMonthCount}</div>`);
+  return (eventCount.innerHTML += `<div>${numEvents} events coming up • ${thisMonthCount}</div> events this month`);
 };
 
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
