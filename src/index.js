@@ -104,7 +104,7 @@ let eventCounter = (events) => {
     return xDate === thisMonth;
   }).length;
 
-  return (eventCount.innerHTML += `<div>${numEvents} events coming up • ${thisMonthCount}</div> events this month`);
+  return (eventCount.innerHTML += `<p>${numEvents} events coming up  •  ${thisMonthCount} events this month</p>`);
 };
 
 // _________ _______  _______ _________   _______  _______  _______  _______  _______

@@ -57,6 +57,7 @@ textarea {
 
 h1 {
   font-size: 2.5rem;
+  padding-bottom: 1rem;
 }
 h2 {
   font-size: 1.6rem;
@@ -91,7 +92,7 @@ header {
 }
 .dateHeader {
   padding: 16px 0px;
-  background: rgba(239, 239, 239, 0.2);
+  background: rgba(239, 239, 239, 0.3);
 }
 .type,
 .host {
