@@ -11,6 +11,7 @@ fetch(apiUrl)
       (element, index, array) =>
         array.findIndex((t) => t.title === element.title) === index
     );
+
     const now = new Date(Date.now());
     let upcoming = distinct.filter(
       (element) => new Date(element.startDate) >= now
@@ -18,6 +19,7 @@ fetch(apiUrl)
     upcoming = upcoming.sort(
       (a, b) => new Date(a.startDate) - new Date(b.startDate)
     );
+
     eventManager(upcoming);
     eventCounter(upcoming);
   });
@@ -35,11 +37,9 @@ let eventManager = (events) => {
   };
 
   let dateHeaders = () => {
-    let uniqueDates = [...events.map((x) => x.startDate)];
-    uniqueDates = uniqueDates;
-    console.log(uniqueDates);
+    let arrayOfStartDates = [...events.map((x) => x.startDate)];
 
-    return uniqueDates.map((event) => {
+    return arrayOfStartDates.map((event) => {
       let formatted = new Intl.DateTimeFormat("en-US", dateOptions).format(
         new Date(event)
       );
@@ -65,7 +65,7 @@ let eventManager = (events) => {
     let eventsList = uniqueEvents();
     let datesList = dates().sort((a, b) => new Date(b) - new Date(a));
 
-    for (let i = 0; i < datesList.length; i++) {
+    for (let i = datesList.length - 1; i >= 0; i--) {
       eventsContainer.innerHTML += `<div class="dateHeader date-indicator"><h3>${datesList[i]}</h3></div>`;
       eventsList.filter((x) => {
         let element = events.find((el) => el.title === x);
@@ -80,6 +80,8 @@ let eventManager = (events) => {
         );
 
         if (elementDate === datesList[i]) {
+          console.log(datesList);
+
           eventsContainer.innerHTML += `<a href="#">
           <li class="grid event-listing-container row">
           <div class="time">${elementTime}</div>
