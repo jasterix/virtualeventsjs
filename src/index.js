@@ -2,15 +2,23 @@ const apiUrl = "https://virtual-events.herokuapp.com/events";
 
 const eventsContainer = document.querySelector(".search-results");
 const eventListing = document.querySelector(".row.event-listing");
-
-console.log("hello");
+const evento = document.querySelector(".event-count");
 
 fetch(apiUrl)
   .then((response) => response.json())
   .then((events) => {
-    console.log(events);
+    removeDuplicates(events);
     eventManager(events);
+    eventCounter(events);
   });
+
+let removeDuplicates = (events) => {
+  console.log(events);
+
+  return [...new Set(events.map((event) => event.title))];
+};
+
+console.log(removeDuplicates());
 
 let eventManager = (events) => {
   const dateOptions = {
@@ -31,7 +39,6 @@ let eventManager = (events) => {
       let formatted = new Intl.DateTimeFormat("en-US", dateOptions).format(
         new Date(date)
       );
-      console.log(formatted);
 
       return formatted;
     });
@@ -66,8 +73,6 @@ let eventManager = (events) => {
         let elementTime = new Intl.DateTimeFormat("en-US", timeOptions).format(
           new Date(element.startDate)
         );
-        console.log("hi hi");
-        // console.log("hello hey");
 
         if (elementDate === datesList[i]) {
           // console.log("hello hey");
@@ -75,6 +80,7 @@ let eventManager = (events) => {
           <li class="grid event-listing-container row">
           <div class="time">${elementTime}</div>
           </div>
+          
           <span class="host chunk"><h4>${element.host}</h4></span>
           <span class="title chunk"><h2>${element.title}</h2></span>
           <span class="type chunk"><p>${element.eventType}</p></span>
@@ -85,11 +91,23 @@ let eventManager = (events) => {
         }
       });
     }
-
-    console.log("hello hey");
   };
 
   displayEvents(dateHeaders, matchingEvents);
+};
+
+let eventCounter = (removeDuplicates) => {
+  let eventCount = removeDuplicates().length;
+
+  let thisMonth = new Date(Date.now()).getMonth() + 1;
+
+  let thisMonthCount = events.filter((x) => {
+    let xDate = new Date(x.startDate).getMonth();
+
+    return xDate + 1 === thisMonth;
+  });
+
+  return (eventCount.innerHTML += `<div>${eventCount} events coming up • ${thisMonthCount}</div>`);
 };
 
 // _________ _______  _______ _________   _______  _______  _______  _______  _______

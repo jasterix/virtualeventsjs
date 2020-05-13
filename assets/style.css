@@ -56,7 +56,7 @@ textarea {
 /* =================== */
 
 h1 {
-  font-size: 2rem;
+  font-size: 2.5rem;
 }
 h2 {
   font-size: 1.6rem;
@@ -93,6 +93,10 @@ header {
   padding: 16px 0px;
   background: rgba(239, 239, 239, 0.2);
 }
+.type,
+.host {
+  padding: 5px 0;
+}
 
 .event-listing-container {
   background-color: var(--primaryBackground);
@@ -105,11 +109,13 @@ header {
 .time {
   grid-column: 1/2;
   grid-row: 1;
+  padding-top: 0.5rem;
 }
 
 .host {
   grid-column: 2/8;
   grid-row: 1;
+  padding-top: 0.5rem;
 }
 
 .title {
@@ -119,6 +125,7 @@ header {
 .type {
   grid-column: 2/8;
   grid-row: 4;
+  padding-bottom: 0.5rem;
 }
 
 /* small tablet styles */
