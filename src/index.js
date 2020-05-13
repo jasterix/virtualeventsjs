@@ -6,9 +6,11 @@ const eventCount = document.querySelector(".event-count");
 
 fetch(apiUrl)
   .then((response) => response.json())
-  .then((events) => {
-    eventManager(events);
-    eventCounter(events);
+  .then((data) => {
+    
+
+    eventManager(data);
+    eventCounter(data);
   });
 
 let eventManager = (events) => {
@@ -47,6 +49,7 @@ let eventManager = (events) => {
 
   let displayEvents = (dates, uniqueEvents) => {
     let now = Date.now(0);
+
     let n = new Date();
     let eventsList = uniqueEvents();
     let datesList = dates().sort((a, b) => new Date(b) - new Date(a));
@@ -86,15 +89,14 @@ let eventManager = (events) => {
   displayEvents(dateHeaders, matchingEvents);
 };
 
-let eventCounter = (uniqueEvents) => {
-  let numEvents = uniqueEvents.length;
+let eventCounter = (events) => {
+  let numEvents = events.length;
 
   // reminder--Date month starts at 0 (January)
   let thisMonth = new Date(Date.now()).getMonth();
 
-  let thisMonthCount = uniqueEvents.filter((x) => {
+  let thisMonthCount = events.filter((x) => {
     let xDate = new Date(x.startDate).getMonth();
-    console.log(xDate, "-", thisMonth, "--", x.title);
 
     return xDate === thisMonth;
   }).length;
