@@ -8,19 +8,18 @@ fetch(apiUrl)
   .then((response) => response.json())
   .then((events) => {
     removeDuplicates(events);
-    eventManager(events);
-    eventCounter(events);
+    // eventManager(events);
+    // eventCounter(events);
   });
 
 let removeDuplicates = (events) => {
-  console.log(events);
-
-  return [...new Set(events.map((event) => event.title))];
+  let uniqueEvents = [...new Set(events.map((event) => event.title))];
+  eventManager(uniqueEvents);
 };
 
-console.log(removeDuplicates());
-
 let eventManager = (events) => {
+  console.log(events);
+
   const dateOptions = {
     weekday: "long",
     month: "long",
@@ -96,12 +95,12 @@ let eventManager = (events) => {
   displayEvents(dateHeaders, matchingEvents);
 };
 
-let eventCounter = (removeDuplicates) => {
-  let eventCount = removeDuplicates().length;
+let eventCounter = (uniqueEvents) => {
+  let eventCount = uniqueEvents.length;
 
   let thisMonth = new Date(Date.now()).getMonth() + 1;
 
-  let thisMonthCount = events.filter((x) => {
+  let thisMonthCount = uniqueEvents.filter((x) => {
     let xDate = new Date(x.startDate).getMonth();
 
     return xDate + 1 === thisMonth;
