@@ -143,13 +143,8 @@ let eventCounter = (events) => {
 mocha.setup("bdd");
 const { assert } = chai;
 
-describe("Max Character", () => {
-  it("maxChar() finds the most frequently used character", () => {
-    assert.equal(maxChar("a"), "a");
-    assert.equal(maxChar("test"), "t");
-    assert.equal(maxChar("I loveeeeee noodles"), "e");
-    assert.equal(maxChar("1337"), "3");
-  });
+describe("M", () => {
+  it("ma", () => {});
 });
 
 // mocha.run();
