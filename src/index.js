@@ -52,9 +52,7 @@ let eventManager = (events) => {
   let displayEvents = (dates) => {
     let now = Date.now();
 
-    let n = new Date();
     let titles = events.map((event) => event.title);
-    let d = events.map((event) => event.startDate);
 
     let datesList = dates().sort((a, b) => new Date(b) - new Date(a));
 
@@ -73,8 +71,6 @@ let eventManager = (events) => {
         );
 
         if (elementDate === datesList[i]) {
-          // console.log(datesList);
-
           eventsContainer.innerHTML += `<a href="#">
           <li class="grid event-listing-container row">
           <div class="time">${elementTime}</div>
@@ -91,23 +87,19 @@ let eventManager = (events) => {
       });
     }
   };
-
   displayEvents(formatDates);
 };
 
 let eventCounter = (events) => {
-  let numEvents = events.length;
-
-  // reminder--Date month starts at 0 (January)
+  // REMINDER: Date month starts at 0 (January)
   let thisMonth = new Date(Date.now()).getMonth();
 
-  let thisMonthCount = events.filter((x) => {
-    let xDate = new Date(x.startDate).getMonth();
+  let eventsThisMonth = events.filter((event) => {
+    let eventDate = new Date(event.startDate).getMonth();
+    return eventDate === thisMonth;
+  });
 
-    return xDate === thisMonth;
-  }).length;
-
-  return (eventCount.innerHTML += `<p>${numEvents} events coming up  •  ${thisMonthCount} events happening this month</p>`);
+  return (eventCount.innerHTML += `<p>${events.length} events coming up  •  ${eventsThisMonth.length} events happening this month</p>`);
 };
 
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
