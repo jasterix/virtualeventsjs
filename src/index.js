@@ -57,7 +57,7 @@ let eventManager = (events) => {
     let datesList = dates().sort((a, b) => new Date(b) - new Date(a));
 
     for (let i = datesList.length - 1; i >= 0; i--) {
-      eventsContainer.innerHTML += `<div class="dateHeader date-indicator"><h3>${datesList[i]}</h3></div>`;
+      eventsContainer.innerHTML += `<div class="dateHeader date-indicator" onclick="click()"><h3>${datesList[i]}</h3></div>`;
       titles.filter((x) => {
         let element = events.find((el) => el.title === x);
 
@@ -77,7 +77,7 @@ let eventManager = (events) => {
           </div>
           
           <span class="host chunk"><h4>${element.host}</h4></span>
-          <span class="title chunk"><h2>${element.title}</h2></span>
+          <span class="title chunk" ><h2>${element.title}</h2></span>
           <span class="type chunk"><p>${element.eventType}</p></span>
           
           </li>
