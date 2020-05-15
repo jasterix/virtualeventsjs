@@ -7,6 +7,7 @@ const eventCount = document.querySelector(".event-count");
 fetch(apiUrl)
   .then((response) => response.json())
   .then((data) => {
+    // Filter for unique events / remove duplicates
     const distinct = data.filter(
       (element, index, array) =>
         array.findIndex((t) => t.title === element.title) === index
@@ -16,10 +17,13 @@ fetch(apiUrl)
     let upcoming = distinct.filter(
       (element) => new Date(element.startDate) >= now
     );
+
+    // Filter for future events / remove events that passed
     upcoming = upcoming.sort(
       (a, b) => new Date(a.startDate) - new Date(b.startDate)
     );
 
+    //Display and count upcoming and unique events
     eventManager(upcoming);
     eventCounter(upcoming);
   });
@@ -36,38 +40,27 @@ let eventManager = (events) => {
     dayPeriod: "short",
   };
 
-  let dateHeaders = () => {
-    let arrayOfStartDates = [...events.map((x) => x.startDate)];
-
-    return arrayOfStartDates.map((event) => {
-      let formatted = new Intl.DateTimeFormat("en-US", dateOptions).format(
+  let formatDates = () => {
+    let dates = events.map((event) => event.startDate);
+    return dates.map((event) => {
+      return new Intl.DateTimeFormat("en-US", dateOptions).format(
         new Date(event)
       );
-
-      return formatted;
     });
   };
 
-  // dateHeaders();
-
-  let matchingEvents = () => {
-    const uniqueEvents = [...new Set(events.map((x) => x.title))];
-
-    return uniqueEvents;
-  };
-
-  // matchingEvents();
-
-  let displayEvents = (dates, uniqueEvents) => {
-    let now = Date.now(0);
+  let displayEvents = (dates) => {
+    let now = Date.now();
 
     let n = new Date();
-    let eventsList = uniqueEvents();
+    let titles = events.map((event) => event.title);
+    let d = events.map((event) => event.startDate);
+
     let datesList = dates().sort((a, b) => new Date(b) - new Date(a));
 
     for (let i = datesList.length - 1; i >= 0; i--) {
       eventsContainer.innerHTML += `<div class="dateHeader date-indicator"><h3>${datesList[i]}</h3></div>`;
-      eventsList.filter((x) => {
+      titles.filter((x) => {
         let element = events.find((el) => el.title === x);
 
         let elDate = new Date(element.startDate);
@@ -80,7 +73,7 @@ let eventManager = (events) => {
         );
 
         if (elementDate === datesList[i]) {
-          console.log(datesList);
+          // console.log(datesList);
 
           eventsContainer.innerHTML += `<a href="#">
           <li class="grid event-listing-container row">
@@ -99,7 +92,7 @@ let eventManager = (events) => {
     }
   };
 
-  displayEvents(dateHeaders, matchingEvents);
+  displayEvents(formatDates);
 };
 
 let eventCounter = (events) => {
