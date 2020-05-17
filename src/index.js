@@ -1,4 +1,5 @@
 const apiUrl = "https://virtual-events.herokuapp.com/events";
+// const homeUrl = ""
 
 const eventsContainer = document.querySelector(".search-results");
 const eventListing = document.querySelector(".row.event-listing");
@@ -71,7 +72,7 @@ let eventManager = (events) => {
         );
 
         if (elementDate === datesList[i]) {
-          eventsContainer.innerHTML += `<a href="#">
+          eventsContainer.innerHTML += `<div data-id=${element._id} href="src/event.html">
           <li class="grid event-listing-container row">
           <div class="time">${elementTime}</div>
           </div>
@@ -81,7 +82,7 @@ let eventManager = (events) => {
           <span class="type chunk"><p>${element.eventType}</p></span>
           
           </li>
-          </a>
+          </div>
           </ul>`;
         }
       });
@@ -103,10 +104,15 @@ let eventCounter = (events) => {
 };
 
 const clickHere = (event) => {
-  let ev = event.target;
-  const evId = ev.dataset.id;
-  console.log(evId);
-  console.log(event.target);
+  window.location.search = "/event.html" + "?id=" + event.target.dataset.id;
+
+  const queryString = window.location.search;
+
+  const urlParams = new URLSearchParams(queryString);
+
+  const page_type = urlParams.get("page_type");
+
+  console.log(urlParams);
 };
 
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
