@@ -1,5 +1,4 @@
 const apiUrl = "https://virtual-events.herokuapp.com/events";
-// const homeUrl = ""
 
 const eventsContainer = document.querySelector(".search-results");
 const eventListing = document.querySelector(".row.event-listing");
@@ -72,7 +71,7 @@ let eventManager = (events) => {
         );
 
         if (elementDate === datesList[i]) {
-          eventsContainer.innerHTML += `<div data-id=${element._id} href="src/event.html">
+          eventsContainer.innerHTML += `<div data-id=${element._id} href="src/event.html" onclick=clickHere(event)>
           <li class="grid event-listing-container row">
           <div class="time">${elementTime}</div>
           </div>
@@ -103,18 +102,22 @@ let eventCounter = (events) => {
   return (eventCount.innerHTML += `<p>${events.length} events coming up  •  ${eventsThisMonth.length} events happening this month</p>`);
 };
 
-const clickHere = (event) => {
-  window.location.search = "/event.html" + "?id=" + event.target.dataset.id;
+const init = function (e) {
+  console.log(e);
 
-  const queryString = window.location.search;
+  let startTime = new Date();
+  let title = document.querySelector(".title");
 
-  const urlParams = new URLSearchParams(queryString);
-
-  const page_type = urlParams.get("page_type");
-
-  console.log(urlParams);
+  title.addEventListener("click"),
+    function () {
+      window.document.location =
+        "/event.html" + "?startTime=" + startTime.getTime();
+    };
 };
 
+document.addEventListener("DOMContentLoaded", function (e) {
+  init();
+});
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
 // \__   __/(  ____ \(  ____ \\__   __/  (  ____ \(  ___  )(  ____ \(  ____ \(  ____ \
 //    ) (   | (    \/| (    \/   ) (     | (    \/| (   ) || (    \/| (    \/| (    \/
