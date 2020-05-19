@@ -71,13 +71,15 @@ let eventManager = (events) => {
         );
 
         if (elementDate === datesList[i]) {
+          console.log(elementDate, elementTime);
+
           eventsContainer.innerHTML += `<a data-id=${element._id} href="src/event.html">
           <li class="grid event-listing-container row">
           <div class="time">${elementTime}</div>
           </div>
           
           <span class="host chunk"><h4>${element.host}</h4></span>
-          <span class="title chunk"  onclick=loadEvent(event) ><h2 data-eventLink=${element.eventLink} data-id=${element._id}>${element.title}</h2></span>
+          <span class="title chunk"  onclick=loadEvent(event) ><h2 data-eventLink=${element.eventLink} data-id=${element._id} data-startDate=${elementDate} data-time=${elementTime}>${element.title}</h2></span>
           <span class="type chunk"><p>${element.eventType}</p></span>
           
           </li>
@@ -103,8 +105,9 @@ let eventCounter = (events) => {
 };
 
 const loadEvent = (event) => {
-  console.log(event.target.dataset.id);
-  localStorage.setItem("eventId", event.target.dataset.id);
+  console.log(event.target.dataset);
+
+  localStorage.setItem("eventData", JSON.stringify(event.target.dataset));
 };
 // document.addEventListener("DOMContentLoaded", function (e) {
 //   init(e);
