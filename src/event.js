@@ -42,6 +42,8 @@ const formatDate = (startDate, endDate) => {
     minute: "numeric",
     dayPeriod: "short",
   };
+  const timeZoneOptions = {};
+  timeZoneOptions.timeZoneName = "short";
   const starts = new Intl.DateTimeFormat("en-US", dateOptions).format(
     new Date(startDate)
   );
@@ -55,15 +57,20 @@ const formatDate = (startDate, endDate) => {
     new Date(endDate)
   );
 
-  chunkDate(starts, ends, startTime, endTime);
+  const timezone = new Intl.DateTimeFormat("en-US", timeZoneOptions)
+    .format(new Date(endDate))
+    .split(",")[1];
+  console.log(timezone);
+
+  chunkDate(starts, ends, startTime, endTime, timezone);
 };
 
-const chunkDate = (starts, ends, startTime, endTime) => {
+const chunkDate = (starts, ends, startTime, endTime, timezone) => {
   let eventDate = "";
   let eventTime = "";
   if (starts === ends) {
     eventDate = starts;
-    eventTime = startTime + " to " + endTime;
+    eventTime = startTime + " to " + endTime + timezone;
   }
   displayDate(eventDate, eventTime);
 };
