@@ -71,17 +71,17 @@ let eventManager = (events) => {
         );
 
         if (elementDate === datesList[i]) {
-          eventsContainer.innerHTML += `<div data-id=${element._id} href="src/event.html" onclick=clickHere(event)>
+          eventsContainer.innerHTML += `<a data-id=${element._id} href="src/event.html">
           <li class="grid event-listing-container row">
           <div class="time">${elementTime}</div>
           </div>
           
           <span class="host chunk"><h4>${element.host}</h4></span>
-          <span class="title chunk"onclick="clickHere(event)" ><h2 data-eventLink=${element.eventLink} data-id=${element._id}>${element.title}</h2></span>
+          <span class="title chunk"  onclick=loadEvent(event) ><h2 data-eventLink=${element.eventLink} data-id=${element._id}>${element.title}</h2></span>
           <span class="type chunk"><p>${element.eventType}</p></span>
           
           </li>
-          </div>
+          </a>
           </ul>`;
         }
       });
@@ -102,22 +102,26 @@ let eventCounter = (events) => {
   return (eventCount.innerHTML += `<p>${events.length} events coming up  •  ${eventsThisMonth.length} events happening this month</p>`);
 };
 
-const init = function (e) {
-  console.log(e);
-
-  let startTime = new Date();
-  let title = document.querySelector(".title");
-
-  title.addEventListener("click"),
-    function () {
-      window.document.location =
-        "/event.html" + "?startTime=" + startTime.getTime();
-    };
+const loadEvent = (event) => {
+  console.log(event.target.dataset.id);
+  localStorage.setItem("eventId", event.target.dataset.id);
 };
+// document.addEventListener("DOMContentLoaded", function (e) {
+//   init(e);
+// });
 
-document.addEventListener("DOMContentLoaded", function (e) {
-  init();
-});
+// const init = function (e) {
+//   console.log(e.target.dataset.id);
+
+//   let startTime = new Date();
+//   let title = document.querySelector(".title");
+
+//   title.addEventListener("click"),
+//     function () {
+//       localStorage.setItem("eventId, e.target.dataset.id");
+//     };
+// };
+
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
 // \__   __/(  ____ \(  ____ \\__   __/  (  ____ \(  ___  )(  ____ \(  ____ \(  ____ \
 //    ) (   | (    \/| (    \/   ) (     | (    \/| (   ) || (    \/| (    \/| (    \/
