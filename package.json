@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/jasterix/virtualeventsjs/issues"
   },
-  "homepage": "https://github.com/jasterix/virtualeventsjs#readme"
+  "homepage": "https://github.com/jasterix/virtualeventsjs#readme",
+  "dependencies": {
+    "readme-md-generator": "^1.0.0"
+  }
 }
