@@ -1,6 +1,8 @@
 const eventTitle = document.querySelector(".event-title");
 const eventDateDetails = document.querySelector(".event-date");
 const dateChunk = document.querySelector(".date-chunk");
+const eventDescription = document.querySelector(".event-description");
+const eventLink = document.querySelector(".eventLink");
 // const eventHost = document.querySelector(".host");
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -29,6 +31,16 @@ const showDetails = (event) => {
   eventTitle.innerText = `${event.title}`;
   //   eventHost.innerText = `${event.host}`;
   formatDate(event.startDate, event.endDate);
+  eventLink.innerHTML = `<span><i class="far fa-play-circle"></i></span><p><a href=${event.eventLink}>RSVP here</a></p>`;
+  eventDescription.innerHTML += `<p>${event.description}</p>
+    
+  <div><p>
+    ${event.free ? "Free event" : ""}
+    ${event.techWomen ? "Women in tech" : ""}
+    ${event.blackTech ? "Blacktech" : ""}
+   </p> </div>
+   <p> Link to event: <a href="${event.eventLink}">${event.eventLink}</a></p>
+    `;
 };
 
 const formatDate = (startDate, endDate) => {
@@ -60,7 +72,6 @@ const formatDate = (startDate, endDate) => {
   const timezone = new Intl.DateTimeFormat("en-US", timeZoneOptions)
     .format(new Date(endDate))
     .split(",")[1];
-  console.log(timezone);
 
   chunkDate(starts, ends, startTime, endTime, timezone);
 };
@@ -76,10 +87,8 @@ const chunkDate = (starts, ends, startTime, endTime, timezone) => {
 };
 
 const displayDate = (eventDate, eventTime) => {
-  console.log(dateChunk);
-
-  console.log(eventDate, eventTime);
   eventDateDetails.innerHTML += `${eventDate}`;
-  dateChunk.innerText += `${eventDate}
-    ${eventTime}`;
+  dateChunk.innerHTML += `<div><i class="far fa-clock"></i></div><div><p>${eventDate} </p>
+    <p>${eventTime}</p></div>
+    `;
 };

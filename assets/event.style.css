@@ -1,0 +1,29 @@
+h2 {
+  font-size: 1.7rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+  padding: 0.5rem 0;
+  /* font-weight: light; */
+  font-weight: lighter;
+  text-transform: none;
+}
+
+h4 {
+  font-size: 1.4rem;
+  text-transform: none;
+  font-weight: light;
+}
+
+p {
+  font-size: 1.3rem;
+  font-weight: light;
+  /* line-height: 1.2rem; */
+}
+
+.far {
+  color: lightgray;
+  font-size: 30px;
+  padding: 0 10px 0px 0;
+}
