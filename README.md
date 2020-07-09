@@ -38,6 +38,13 @@ npm run test
 - Twitter: [@\_jasterix](https://twitter.com/_jasterix)
 - Github: [@jasterix](https://github.com/jasterix)
 
+## Pending Features
+
+- [ ] Format startDate to just Day, Month day
+- [ ] Group events by day
+- [ ] Create banner showing total upcoming events
+- [ ] Create search bar
+
 ## 🤝 Contributing
 
 Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/jasterix/virtualeventsjs/issues). You can also take a look at the [contributing guide](https://github.com/jasterix/virtualeventsjs/blob/master/CONTRIBUTING.md).
