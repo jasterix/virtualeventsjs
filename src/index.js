@@ -73,10 +73,9 @@ let eventManager = (events) => {
         if (elementDate === datesList[i]) {
           console.log(elementDate, elementTime);
 
-          eventsContainer.innerHTML += `<a data-id=${element._id} href="src/event.html">
-          <li class="grid event-listing-container row">
+          eventsContainer.innerHTML += `<div><a data-id=${element._id} href="src/event.html">
+          <li class="grid event-listing-container row event">
           <div class="time">${elementTime}</div>
-          </div>
           
           <span class="host chunk"><h4>${element.host}</h4></span>
           <span class="title chunk"  onclick=loadEvent(event) ><h2 data-eventLink=${element.eventLink} data-id=${element._id} data-startDate=${elementDate} data-time=${elementTime}>${element.title}</h2></span>
@@ -84,6 +83,7 @@ let eventManager = (events) => {
           
           </li>
           </a>
+          </div>
           </ul>`;
         }
       });
