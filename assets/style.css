@@ -36,6 +36,7 @@ li {
 body {
   /* overflow-y: hidden; */
   background-color: #1dbf73;
+  color: black;
 }
 
 input,
@@ -79,7 +80,8 @@ header {
   /* background-color: rgba(0, 69, 93, 1); */
   /* height: 100px; */
   text-align: center;
-  color: white;
+  margin: 10px;
+  /* color: white; */
   padding: 70px 0;
 }
 
