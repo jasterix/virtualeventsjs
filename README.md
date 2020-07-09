@@ -1,4 +1,4 @@
-<h1 align="center">Welcome to virtualeventsjs 👋</h1>
+<h1 align="center">Welcome to Virtual Tech Events(frontend) 👋</h1>
 <p>
   <a href="https://github.com/jasterix/virtualeventsjs#readme" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
