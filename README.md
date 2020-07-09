@@ -61,4 +61,5 @@ This project is [MIT](https://github.com/jasterix/virtualeventsjs/blob/master/LI
 ---
 
 _This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
+
 Use `npx readme-md-generator` to update

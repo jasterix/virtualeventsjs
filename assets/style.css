@@ -1,6 +1,7 @@
 /* variables */
 
 --root {
+  --bg: #1dbf73;
   --primaryBackground: rgba(255, 255, 255, 1);
   --secondaryBackground: rgba(22, 69, 93, 1);
   --tertiaryBackground: rgba(239, 239, 239, 1);
@@ -34,6 +35,7 @@ li {
 
 body {
   /* overflow-y: hidden; */
+  background-color: #1dbf73;
 }
 
 input,
@@ -74,11 +76,18 @@ p {
 /* mobile styles */
 
 header {
-  background-color: rgba(0, 69, 93, 1);
+  /* background-color: rgba(0, 69, 93, 1); */
   /* height: 100px; */
   text-align: center;
   color: white;
   padding: 70px 0;
+}
+
+#pageBody {
+  width: 75%;
+  margin: auto;
+  background-color: white;
+  border-radius: 7%;
 }
 .dateHeader {
   padding: 16px 0px;
