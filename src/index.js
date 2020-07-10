@@ -1,6 +1,7 @@
 const apiUrl = "https://virtual-events.herokuapp.com/events";
 
-const eventsContainer = document.querySelector(".search-results");
+const eventsContainer = document.querySelector( ".eventsContainer" ); //formerly loked for search-results
+
 const eventListing = document.querySelector(".row.event-listing");
 const eventCount = document.querySelector(".event-count");
 

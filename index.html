@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="height: 100%;">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,23 +14,17 @@
     />
     <link rel="stylesheet" href="assets/style.css" />
   </head>
-  <body>
+  <body style="height: 100%; display: block;">
     <div id="pageBody">
-      <header>
+      <header tabindex="4">
         <h1 class="header">Find your next event</h1>
         <div class="event-count"></div>
       </header>
-    
 
-    <div id="eventsBody">
-      hihihi
-      <div>
-        hihi
-        <ul class="search-results"></ul>
-      </div>
+      <container id="eventsContainer">
+        <!-- <ul class="search-results"></ul> -->
+      </container>
     </div>
-
-    <footer class="mainFooter"></footer>
     <div id="mocha"></div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/5.2.0/mocha.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/4.2.0/chai.js"></script>
