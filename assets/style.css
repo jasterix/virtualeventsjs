@@ -90,17 +90,19 @@ header {
   margin: 5% auto;
   padding: 2rem 0;
   margin: 20% auto;
+  /* background-color: white; */
+  border-radius: 50%;
+  /* position: relative; */
 }
 
 #pageBody {
   width: 65%;
   height: 25%;
   margin: auto;
-  background-color: white;
-  border-radius: 50%;
-  position: relative;
+  cursor: auto;
 }
-#pageBody::before {
+
+/* header::before {
   content: " ";
   z-index: -1;
   position: absolute;
@@ -111,8 +113,9 @@ header {
   background-color: white;
   right: 80px;
   border-radius: 80%;
-}
-#pageBody::after {
+} */
+
+header::after {
   content: " ";
   z-index: -1;
   position: absolute;
@@ -124,7 +127,7 @@ header {
   bottom: 40px;
   transform: rotate(160deg);
   background-color: white;
-  border-radius: 58%;
+  border-radius: 80%;
 }
 
 #pageBodyEventss {
