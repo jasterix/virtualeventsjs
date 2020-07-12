@@ -1,7 +1,8 @@
 const apiUrl = "https://virtual-events.herokuapp.com/events";
 const header = document.querySelector("header");
 
-const searchResults = document.querySelector("#search-results"); //formerly looked for searchResults
+const searchResults = document.querySelector(".search-results"); //formerly looked for searchResults
+const eventsContainer = document.querySelector("#eventsContainer");
 
 const eventListing = document.querySelector(".row.event-listing");
 const eventCount = document.querySelector(".event-count");
@@ -9,8 +10,8 @@ const eventCount = document.querySelector(".event-count");
 // Click to show events
 
 header.addEventListener("click", () => {
-  header.style.display = "none";
-  searchResults.style.display = "block";
+  // header.style.display = "none";
+  // eventsContainer.style.display = "block";
 });
 
 fetch("https://virtual-events.herokuapp.com/events", {
@@ -19,12 +20,9 @@ fetch("https://virtual-events.herokuapp.com/events", {
   },
 })
   .then((response) => {
-    console.log("hi");
     return response.json();
   })
   .then((data) => {
-    console.log("hi");
-    console.log(data);
     // Filter for unique events / remove duplicates
     const distinct = data.filter(
       (element, index, array) =>
