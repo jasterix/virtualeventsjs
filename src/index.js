@@ -1,19 +1,35 @@
 const apiUrl = "https://virtual-events.herokuapp.com/events";
+const header = document.querySelector("header");
 
-const eventsContainer = document.querySelector( ".eventsContainer" ); //formerly loked for search-results
+const searchResults = document.querySelector("#search-results"); //formerly looked for searchResults
 
 const eventListing = document.querySelector(".row.event-listing");
 const eventCount = document.querySelector(".event-count");
 
-fetch(apiUrl)
-  .then((response) => response.json())
+// Click to show events
+
+header.addEventListener("click", () => {
+  header.style.display = "none";
+  searchResults.style.display = "block";
+});
+
+fetch("https://virtual-events.herokuapp.com/events", {
+  headers: {
+    "Content-Type": "application/json",
+  },
+})
+  .then((response) => {
+    console.log("hi");
+    return response.json();
+  })
   .then((data) => {
+    console.log("hi");
+    console.log(data);
     // Filter for unique events / remove duplicates
     const distinct = data.filter(
       (element, index, array) =>
         array.findIndex((t) => t.title === element.title) === index
     );
-
     const now = new Date(Date.now());
     let upcoming = distinct.filter(
       (element) => new Date(element.startDate) >= now
@@ -27,6 +43,7 @@ fetch(apiUrl)
     //Display and count upcoming and unique events
     eventManager(upcoming);
     eventCounter(upcoming);
+    console.log(searchResults);
   });
 
 let eventManager = (events) => {
@@ -58,7 +75,7 @@ let eventManager = (events) => {
     let datesList = dates().sort((a, b) => new Date(b) - new Date(a));
 
     for (let i = datesList.length - 1; i >= 0; i--) {
-      eventsContainer.innerHTML += `<div class="dateHeader date-indicator" ><h3>${datesList[i]}</h3></div>`;
+      searchResults.innerHTML += `<div class="dateHeader date-indicator" ><h3>${datesList[i]}</h3></div>`;
       titles.filter((x) => {
         let element = events.find((el) => el.title === x);
 
@@ -74,7 +91,7 @@ let eventManager = (events) => {
         if (elementDate === datesList[i]) {
           console.log(elementDate, elementTime);
 
-          eventsContainer.innerHTML += `<div><a data-id=${element._id} href="src/event.html">
+          searchResults.innerHTML += `<div><a data-id=${element._id} href="src/event.html">
           <li class="grid event-listing-container row event">
           <div class="time">${elementTime}</div>
           
