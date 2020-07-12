@@ -7,6 +7,7 @@
   --tertiaryBackground: rgba(239, 239, 239, 1);
   --primaryFont: rgba(0, 0, 0, 0.87);
   --secondaryFont: rgba(116, 116, 116, 0.8);
+  font-size: 16px;
   font-size: 62.5%;
 }
 
@@ -102,7 +103,6 @@ header {
 }
 
 header:focus > h1 {
-  font-size: 1px;
   display: none;
   width: 0rem;
 }
@@ -126,13 +126,13 @@ header::before {
   width: 40rem;
   height: 40rem;
   right: -5rem;
-  top: -15rem;
+  top: -20rem;
   background-color: white;
   border-radius: 50%;
   z-index: -1;
 }
 
-header::after {
+/* header::after {
   content: " ";
   position: absolute;
   width: 40rem;
@@ -142,7 +142,7 @@ header::after {
   background-color: white;
   border-radius: 50%;
   z-index: -1;
-}
+} */
 
 /* .dateHeader {
   padding: 16px 0px;
